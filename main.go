@@ -11,7 +11,7 @@ import (
 func main() {
 	// Initialize
 	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil {
-		log.Fatalln("Init Error:", err)
+		log.Fatalln("Init error:", err)
 	}
 	// Make sure to quit when the function returns
 	defer sdl.Quit()
@@ -19,21 +19,27 @@ func main() {
 	// Create the window
 	win, err := sdl.CreateWindow("Hello World!", 100, 100, 320, 200, sdl.WINDOW_SHOWN)
 	if err != nil {
-		log.Fatalln("CreateWindow Error:", err)
+		log.Fatalln("CreateWindow error:", err)
 	}
 	defer win.Destroy()
 
 	// Create a renderer
 	ren, err := sdl.CreateRenderer(win, -1, sdl.RENDERER_ACCELERATED|sdl.RENDERER_PRESENTVSYNC)
 	if err != nil {
-		log.Fatalln("CreateRenderer Error:", err)
+		log.Fatalln("CreateRenderer error:", err)
 	}
 	defer ren.Destroy()
+
+	// Render SVG to PNG
+	//err = Render(filepath.Join(".", "img", "spaceships.svg"), filepath.Join(".", "img", "spaceships.png"))
+	//if err != nil {
+	//log.Fatalln("Render error:", err)
+	//}
 
 	// Load the image as a texture
 	spaceShipsTexture, err := img.LoadTexture(ren, filepath.Join(".", "img", "spaceships.png"))
 	if err != nil {
-		log.Fatalln("LoadTexture Error:", err)
+		log.Fatalln("LoadTexture error:", err)
 		sdl.LogError(sdl.LOG_CATEGORY_APPLICATION, "LoadTexture: %s\n", err)
 	}
 	defer spaceShipsTexture.Destroy()
