@@ -1,2 +1,3 @@
 # strat
-The beginnings of a strategy game
+
+An experiment with Go + SDL2
